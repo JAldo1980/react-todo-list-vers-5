@@ -1,7 +1,10 @@
 import React from "react";
 
-function Input({ handleAdd }) {
-  const itemValue = document.getElementById("input").value;
+function Input({ handleAdd, inputValue, setInputValue }) {
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
   return (
     <>
       <div className="input-box-el">
@@ -9,11 +12,13 @@ function Input({ handleAdd }) {
           type="text"
           id="input"
           className="input-el"
-          placeholder="Add items..."
+          placeholder="add items"
+          value={inputValue}
+          onChange={handleChange}
         />
       </div>
       <div className="btn-box-el">
-        <button id="add-btn" onClick={handleAdd}>
+        <button id="add-btn" onClick={() => handleAdd(inputValue)}>
           Add
         </button>
         <button id="filter-btn">Filter</button>
